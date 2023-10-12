@@ -1,0 +1,10 @@
+{
+    "name": "Twitch Helper",
+    "description": "Opens a twitch tab",
+    "version": "1.0",
+    "action": {
+        "default_popup": "popup_page/popup.html"
+    },
+    "permissions": ["tabs", "contextMenus"],
+    "manifest_version": 3
+}
