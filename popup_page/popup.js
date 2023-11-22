@@ -1,5 +1,9 @@
-let channelList = ["felps", "yasminhalves", "lhardoo"];
+let channelList = [];
 let alreadyAdded = [];
+  
+channelList = chrome.storage.sync.get(["channels"]).then((result) => {
+    console.log("Value currently is " + result.key)
+});
 
 const channelsDiv = document.getElementById("channelListDiv");
 const form = document.getElementById('form');
@@ -9,6 +13,9 @@ input.focus();
 
 btnAdd.addEventListener('click', () => {
     channelList.push(input.value);
+    chrome.storage.sync.set({ channels: channelList }).then(() => {
+        console.log("Value is set");
+    });
     renderChannels();
 });
 
