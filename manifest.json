@@ -9,6 +9,6 @@
     "action": {
         "default_popup": "popup_page/popup.html"
     },
-    "permissions": ["tabs", "contextMenus"],
+    "permissions": ["tabs", "contextMenus", "storage"],
     "manifest_version": 3
 }
