@@ -6,85 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Twitch opener</title>
-    <style>
-
-        form{
-            display: flex;
-            justify-content: center;
-        }
-
-        .channel-input{
-            width: 200px;
-            height: 40px;
-
-            font-size: 1.2rem;
-            text-align: center;
-            color: #9147ff;
-
-            outline: none;
-
-            border: 2px solid #9147ff;
-            border-right: none;
-            
-            border-top-left-radius: 15px;
-            border-bottom-left-radius: 15px;
-        }
-
-        .channel::placeholder{
-            color: #9147ff;
-        }
-
-        .button{
-            width: 40px;
-
-            cursor: pointer;
-
-            border: 2px solid #9147ff;
-            border-left: none;
-
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
-        }
-
-        .icon{
-            color: #9147ff;
-        }
-
-        .channel-list{
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            flex-wrap: wrap;
-
-            margin-top: 20px;
-        }
-
-        .channel{
-            width: 40px;
-            height: 40px;
-
-            background-color: #9147ff;
-            border: none;
-            border-radius: 50%;
-            margin: 5px;
-
-            color: azure;
-            text-align: center;
-            font-size: 1.2rem;
-
-            text-decoration: none;
-        }
-
-    </style>
+    <link rel="stylesheet" href="popup.css">
 </head>
 <body>
     <form id="form">
         <input id="input" class="channel-input" type="text" placeholder="Channel" focus>
         <button class="button" type="submit"><span class="material-icons icon">search</span></button>
     </form>
+    
+    <button class="button-add">Add Channel<span class="material-icons icon">add</span></button>
 
-    <div id="channelListDiv" class="channel-list">
-    </div>
+    <div id="channelListDiv" class="channel-list"></div>
 
     <script src="popup.js"></script>
 </body>

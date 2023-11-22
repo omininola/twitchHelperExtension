@@ -2,6 +2,10 @@
     "name": "Twitch Helper",
     "description": "Opens a twitch tab",
     "version": "1.0",
+    "icons": {
+        "16": "assets/icons8-twitch-16.png",
+        "48": "assets/icons8-twitch-48.png"
+    },
     "action": {
         "default_popup": "popup_page/popup.html"
     },
