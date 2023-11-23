@@ -1,23 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <title>Twitch opener</title>
     <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-    <form id="form">
-        <input id="input" class="channel-input" type="text" placeholder="Channel" focus>
-        <button class="button" type="submit"><span class="material-icons icon">search</span></button>
-    </form>
+    <div class="container">
+        <form id="form">
+            <input id="input" class="channel-input" type="text" placeholder="Channel" focus>
+            <button class="button-half" type="submit"><span class="material-icons icon">search</span></button>
+        </form>
     
-    <button class="button-add" id="btnAdd">Add Channel<span class="material-icons icon">add_circle</span></button>
-    <button class="button-add" id="btnRem">Remove Channel<span class="material-icons icon">delete</span></button>
-
-    <div id="channelListDiv" class="channel-list"></div>
+        <button class="button" id="btnAdd">Add Channel<span class="material-icons icon">add_circle</span></button>
+        <button class="button" id="btnRem">Remove Channel<span class="material-icons icon">delete</span></button>
+    
+        <div id="channelListDiv" class="channel-list"></div>
+    </div>
 
     <script src="popup.js"></script>
 </body>

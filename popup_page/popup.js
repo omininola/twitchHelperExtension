@@ -52,7 +52,12 @@ function renderChannels(){
         link.addEventListener('click', () => {
             openChannel(channel);
         });
-    
+
+        let span = document.createElement('span');
+        span.classList.add("material-icons icon-channel");
+        span.innerHTML = "open_in_new";
+
+        link.appendChild(span);
         channelsDiv.appendChild(link);
     });
 }

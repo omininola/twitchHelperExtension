@@ -1,3 +1,14 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 form{
     display: flex;
     justify-content: center;
@@ -24,7 +35,7 @@ form{
     color: #9147ff;
 }
 
-.button{
+.button-half{
     cursor: pointer;
     width: 40px;
 
@@ -39,29 +50,36 @@ form{
     transition: 500ms;
 }
 
-.button-add{
-    cursor: pointer;
-    width: 100%;
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 250px;
     height: 40px;
+    padding: .5rem;
     margin-top: .5rem;
 
+    font-size: 1.5rem;
+
+    background: #fff;
+    color: #9147ff;
     border: 2px solid #9147ff;
     border-radius: 1rem;
 
-    background-color: #fff;
-    color: #9147ff;
-    font-size: 1.5rem;
-
     transition: 500ms;
+
+    cursor: pointer;
 }
 
-.button-add:hover{
-    background-color: #9147ff;
+.button:hover{
+    background: #9147ff;
     color: #fff;
 }
 
-.button-add:hover > .icon{
+.button:hover > .icon{
     color: #fff;
+    transition: 500ms;
 }
 
 .channel-list{
@@ -74,19 +92,26 @@ form{
 }
 
 .channel{
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 200px;
     height: 40px;
+    margin-top: .5rem;
+    padding: 0 1rem 0 1rem;
 
     background-color: #9147ff;
-    border: none;
-    border-radius: 1rem;
-    margin: .5rem;
-
     color: #fff;
     text-align: center;
     font-size: 1.5rem;
     text-align: center;
-    vertical-align: middle;
-
     text-decoration: none;
+    
+    border-radius: 1rem;
+}
+
+.icon-channel{
+    font-size: 1.5rem;
+    color: #fff;
 }
