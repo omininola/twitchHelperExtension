@@ -54,7 +54,7 @@ function renderChannels(){
         });
 
         let span = document.createElement('span');
-        span.classList.add("material-icons icon-channel");
+        span.classList.add("material-icons", "icon-channel");
         span.innerHTML = "open_in_new";
 
         link.appendChild(span);
