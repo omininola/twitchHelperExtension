@@ -36,6 +36,7 @@ form{
 
 .icon{
     color: #9147ff;
+    transition: 500ms;
 }
 
 .button-add{
@@ -50,6 +51,17 @@ form{
     background-color: #fff;
     color: #9147ff;
     font-size: 1.5rem;
+
+    transition: 500ms;
+}
+
+.button-add:hover{
+    background-color: #9147ff;
+    color: #fff;
+}
+
+.button-add:hover > .icon{
+    color: #fff;
 }
 
 .channel-list{
@@ -70,7 +82,7 @@ form{
     border-radius: 1rem;
     margin: .5rem;
 
-    color: azure;
+    color: #fff;
     text-align: center;
     font-size: 1.5rem;
     text-align: center;

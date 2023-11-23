@@ -1,22 +1,31 @@
 let channelList = [];
 let alreadyAdded = [];
   
-channelList = chrome.storage.sync.get(["channels"]).then((result) => {
-    console.log("Value currently is " + result.key)
+chrome.storage.sync.get(["channels"]).then((result) => {
+    if(result.channels == null) channelList = [];
+    else channelList = result.channels;
+    renderChannels();
 });
 
 const channelsDiv = document.getElementById("channelListDiv");
 const form = document.getElementById('form');
 const input = document.getElementById('input');
-const btnAdd = document.querySelector(".button-add");
+const btnAdd = document.querySelector("#btnAdd");
+const btnRem = document.querySelector("#btnRem");
 input.focus();
 
 btnAdd.addEventListener('click', () => {
+    if(channelList.includes(input.value)) return;
     channelList.push(input.value);
-    chrome.storage.sync.set({ channels: channelList }).then(() => {
-        console.log("Value is set");
-    });
+    chrome.storage.sync.set({ channels: channelList });
     renderChannels();
+});
+
+btnRem.addEventListener('click', () => {
+    channelsDiv.innerHTML = "";
+    channelList = [];
+    alreadyAdded = [];
+    chrome.storage.sync.set({ channels: channelList });
 });
 
 form.addEventListener('submit', () => {
@@ -27,10 +36,9 @@ form.addEventListener('submit', () => {
 
 function addChannel(){
     channelList.push(input.value);
+    input.value = "";
     renderChannels();
 }
-
-renderChannels();
 
 function renderChannels(){
     channelList.forEach(channel => {
