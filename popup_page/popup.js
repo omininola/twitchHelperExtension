@@ -11,7 +11,6 @@ const channelsDiv = document.getElementById("channelListDiv");
 const form = document.getElementById('form');
 const input = document.getElementById('input');
 const btnAdd = document.querySelector("#btnAdd");
-const btnRem = document.querySelector("#btnRem");
 input.focus();
 
 btnAdd.addEventListener('click', () => {
@@ -19,13 +18,6 @@ btnAdd.addEventListener('click', () => {
     channelList.push(input.value);
     chrome.storage.sync.set({ channels: channelList });
     renderChannels();
-});
-
-btnRem.addEventListener('click', () => {
-    channelsDiv.innerHTML = "";
-    channelList = [];
-    alreadyAdded = [];
-    chrome.storage.sync.set({ channels: channelList });
 });
 
 form.addEventListener('submit', () => {
@@ -45,20 +37,61 @@ function renderChannels(){
         if(alreadyAdded.includes(channel)) return;
         alreadyAdded.push(channel);
 
-        let link = document.createElement('a');
-        link.classList.add("channel");
-        link.href = `https://www.twitch.tv/${channel}`;
-        link.innerText = channel;
-        link.addEventListener('click', () => {
+        let channelDiv = document.createElement("div");
+        channelDiv.classList.add("channel");
+        channelDiv.title = channel;
+
+        channelDiv.addEventListener('click', () => {
             openChannel(channel);
         });
 
-        let span = document.createElement('span');
-        span.classList.add("material-icons", "icon-channel");
-        span.innerHTML = "open_in_new";
+        let channelName = document.createElement('p');
+        channelName.innerText = channel;
 
-        link.appendChild(span);
-        channelsDiv.appendChild(link);
+        let channelIconsDiv = document.createElement("div");
+        channelIconsDiv.classList.add("icons-channel");
+
+        let spanOpen = document.createElement('span');
+        spanOpen.classList.add("material-icons", "icon-channel");
+        spanOpen.innerHTML = "open_in_new";
+        spanOpen.title = `Go to t.tv/${channel}`;
+
+        let spanVideos = document.createElement('span');
+        spanVideos.classList.add("material-icons", "icon-channel");
+        spanVideos.innerHTML = "auto_awesome_motion";
+        spanVideos.title = `Go to t.tv/${channel}/videos`;
+
+        spanVideos.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openChannel(channel+"/videos");
+        });
+
+        let spanDel = document.createElement('span');
+        spanDel.classList.add("material-icons", "icon-channel");
+        spanDel.innerHTML = "delete";
+        spanDel.title = `Delete this channel`;
+
+        spanDel.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const channelNode = e.target.parentElement.parentElement;
+            const channel = channelNode.innerText;
+    
+            channelList.splice(channelList.indexOf(channel),1);
+            alreadyAdded.splice(alreadyAdded.indexOf(channel),1);
+            channelsDiv.removeChild(channelNode);
+    
+            chrome.storage.sync.set({ channels: channelList });
+            renderChannels();
+        });
+        
+        channelIconsDiv.appendChild(spanOpen);
+        channelIconsDiv.appendChild(spanVideos);
+        channelIconsDiv.appendChild(spanDel);
+
+        channelDiv.appendChild(channelName);
+        channelDiv.appendChild(channelIconsDiv);
+
+        channelsDiv.appendChild(channelDiv);
     });
 }
 

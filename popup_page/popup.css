@@ -38,6 +38,12 @@ form{
 }
 
 .button-half{
+    display: flex;
+    align-items: center;
+
+    background: #9147ff;
+    color: #fff;
+
     cursor: pointer;
     width: 40px;
 
@@ -101,16 +107,30 @@ form{
     width: 200px;
     height: 40px;
     margin-top: .5rem;
-    padding: 0 1rem 0 1rem;
+    padding: 0 .5rem 0 .5rem;
 
     background-color: #9147ff;
     color: #fff;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1rem;
     text-align: center;
     text-decoration: none;
     
     border-radius: 1rem;
+
+    cursor: pointer;
+}
+
+.channel > p {
+    margin: .5rem;
+    overflow: hidden;
+    text-transform: capitalize;
+}
+
+.icons-channel{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .icon-channel{
