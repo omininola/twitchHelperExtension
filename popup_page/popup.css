@@ -40,6 +40,7 @@ form{
 .button-half{
     display: flex;
     align-items: center;
+    justify-content: center;
 
     background: #9147ff;
     color: #fff;
@@ -112,7 +113,7 @@ form{
     background-color: #9147ff;
     color: #fff;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
     text-align: center;
     text-decoration: none;
     
@@ -136,4 +137,21 @@ form{
 .icon-channel{
     font-size: 1.5rem;
     color: #fff;
+    transition: 250ms;
+    margin-left: .25rem;
+}
+
+.icon-open:hover{
+    transform: rotate(45deg);
+    transition: 250ms;
+}
+
+.icon-videos:hover{
+    transform: scale(1.1);
+    transition: 250ms;
+}
+
+.icon-del:hover{
+    color: #ff7d81;
+    transition: 250ms;
 }

@@ -17,6 +17,8 @@ btnAdd.addEventListener('click', () => {
     if(channelList.includes(input.value)) return;
     channelList.push(input.value);
     chrome.storage.sync.set({ channels: channelList });
+    input.value = "";
+    input.focus();
     renderChannels();
 });
 
@@ -24,13 +26,6 @@ form.addEventListener('submit', () => {
     channel = input.value;
     openChannel(channel);
 });
-
-
-function addChannel(){
-    channelList.push(input.value);
-    input.value = "";
-    renderChannels();
-}
 
 function renderChannels(){
     channelList.forEach(channel => {
@@ -52,12 +47,12 @@ function renderChannels(){
         channelIconsDiv.classList.add("icons-channel");
 
         let spanOpen = document.createElement('span');
-        spanOpen.classList.add("material-icons", "icon-channel");
+        spanOpen.classList.add("material-icons", "icon-channel", "icon-open");
         spanOpen.innerHTML = "open_in_new";
         spanOpen.title = `Go to t.tv/${channel}`;
 
         let spanVideos = document.createElement('span');
-        spanVideos.classList.add("material-icons", "icon-channel");
+        spanVideos.classList.add("material-icons", "icon-channel", "icon-videos");
         spanVideos.innerHTML = "auto_awesome_motion";
         spanVideos.title = `Go to t.tv/${channel}/videos`;
 
@@ -67,7 +62,7 @@ function renderChannels(){
         });
 
         let spanDel = document.createElement('span');
-        spanDel.classList.add("material-icons", "icon-channel");
+        spanDel.classList.add("material-icons", "icon-channel", "icon-del");
         spanDel.innerHTML = "delete";
         spanDel.title = `Delete this channel`;
 
