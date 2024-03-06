@@ -13,6 +13,18 @@ const input = document.getElementById('input');
 const btnAdd = document.querySelector("#btnAdd");
 input.focus();
 
+channelsDiv.addEventListener('dragover', (e) => {
+    const draggingChannel = channelsDiv.querySelector('.dragging');
+    const siblings = [...channelsDiv.querySelectorAll('.channel:not(.dragging)')];
+
+    let nextSibling = siblings.find(sibling => {
+        return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
+
+    });
+
+    channelsDiv.insertBefore(draggingChannel, nextSibling);
+});
+
 btnAdd.addEventListener('click', () => {
     if(channelList.includes(input.value)) return;
     channelList.push(input.value);
@@ -35,9 +47,18 @@ function renderChannels(){
         let channelDiv = document.createElement("div");
         channelDiv.classList.add("channel");
         channelDiv.title = channel;
+        channelDiv.draggable = "true";
 
         channelDiv.addEventListener('click', () => {
             openChannel(channel);
+        });
+
+        channelDiv.addEventListener('dragstart', () => {
+            channelDiv.classList.add('dragging')
+        });
+
+        channelDiv.addEventListener('dragend', () => {
+            channelDiv.classList.remove('dragging')
         });
 
         let channelName = document.createElement('p');
@@ -45,11 +66,6 @@ function renderChannels(){
 
         let channelIconsDiv = document.createElement("div");
         channelIconsDiv.classList.add("icons-channel");
-
-        let spanOpen = document.createElement('span');
-        spanOpen.classList.add("material-icons", "icon-channel", "icon-open");
-        spanOpen.innerHTML = "open_in_new";
-        spanOpen.title = `Go to t.tv/${channel}`;
 
         let spanVideos = document.createElement('span');
         spanVideos.classList.add("material-icons", "icon-channel", "icon-videos");
@@ -78,10 +94,14 @@ function renderChannels(){
             chrome.storage.sync.set({ channels: channelList });
             renderChannels();
         });
+
+        let spanDrag = document.createElement('span');
+        spanDrag.classList.add("material-icons", "icon-channel", "icon-drag");
+        spanDrag.innerHTML = "drag_indicator";
         
-        channelIconsDiv.appendChild(spanOpen);
         channelIconsDiv.appendChild(spanVideos);
         channelIconsDiv.appendChild(spanDel);
+        channelIconsDiv.appendChild(spanDrag);
 
         channelDiv.appendChild(channelName);
         channelDiv.appendChild(channelIconsDiv);

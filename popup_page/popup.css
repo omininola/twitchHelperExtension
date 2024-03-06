@@ -141,11 +141,6 @@ form{
     margin-left: .25rem;
 }
 
-.icon-open:hover{
-    transform: rotate(45deg);
-    transition: 250ms;
-}
-
 .icon-videos:hover{
     transform: scale(1.1);
     transition: 250ms;
@@ -154,4 +149,12 @@ form{
 .icon-del:hover{
     color: #ff7d81;
     transition: 250ms;
+}
+
+.icon-drag{
+    cursor: move;
+}
+
+.dragging {
+    opacity: .5;
 }
