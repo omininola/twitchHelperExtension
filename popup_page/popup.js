@@ -19,7 +19,6 @@ channelsDiv.addEventListener('dragover', (e) => {
 
     let nextSibling = siblings.find(sibling => {
         return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
-
     });
 
     channelsDiv.insertBefore(draggingChannel, nextSibling);
@@ -54,11 +53,23 @@ function renderChannels(){
         });
 
         channelDiv.addEventListener('dragstart', () => {
-            channelDiv.classList.add('dragging')
+            channelDiv.classList.add('dragging');
         });
 
         channelDiv.addEventListener('dragend', () => {
-            channelDiv.classList.remove('dragging')
+            channelDiv.classList.remove('dragging');
+
+            channelList = []
+            everyChannel = [...channelsDiv.querySelectorAll(".channel")];
+
+            everyChannel.forEach(channelElem => {
+                channelList.push(channelElem.title);
+            });
+
+            console.log(everyChannel);
+            console.log(channelList);
+
+            chrome.storage.sync.set({ channels: channelList });
         });
 
         let channelName = document.createElement('p');
